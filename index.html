@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude Code - Na Prática! | 2026</title>
+  <meta name="description" content="Apresentação sobre Claude Code - ferramentas, fluxo de trabalho e boas práticas na prática." />
+
+  <!-- Reveal.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+
+  <!-- Custom Theme -->
+  <link rel="stylesheet" href="css/custom.css" />
+</head>
+<body>
+
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+      SLIDE 1 — CAPA
+    ════════════════════════════════════════════════════════════════════ -->
+    <section id="capa" data-background-color="#0a0e1a" data-background-image="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWhpZm9oYmx6MWhlM3pqdGNrYm4wYmpydDAzcGpreWdlOTY2MWJoMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jBOOXxSJfG8kqMxT11/giphy.gif" data-background-size="cover" data-background-position="center" data-background-opacity="0.06">
+      <div class="particles" id="particles"></div>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="slide-capa">
+        <div class="capa-eyebrow">◈ Palestra Técnica &nbsp;•&nbsp; Março 2026</div>
+        <div class="capa-mission-chip">
+          <span class="capa-mission-chip-icon"><i data-lucide="terminal"></i></span>
+          Da CLI ao código — produtividade com IA
+        </div>
+        <h1 class="capa-title">Claude Code<br /><span style="color:var(--accent-purple)">Na Prática!</span></h1>
+        <div class="capa-tagline-main">
+          Ferramentas, fluxo de trabalho e boas práticas<br />
+          <span style="color:var(--text-muted)">skills + agents + hooks = produtividade real</span>
+        </div>
+        <div class="capa-divider"></div>
+        <p class="capa-desc">
+          Do terminal ao commit — como usar Claude Code para acelerar<br />
+          desenvolvimento com contexto estruturado e automação inteligente.
+        </p>
+        <div class="author-badge">
+          <div class="author-avatar"><i data-lucide="user"></i></div>
+          <div>
+            <div class="author-name">Berg Soares</div>
+          </div>
+        </div>
+        <div class="capa-tags">
+          <span class="tag">Claude Code</span>
+          <span class="tag blue">CLI</span>
+          <span class="tag purple">Skills</span>
+          <span class="tag orange">Agents</span>
+          <span class="tag">Automação</span>
+        </div>
+        <p style="font-family:'JetBrains Mono',monospace; font-size:0.5em; color:var(--text-muted); margin-top:1.3em;">
+          ➡ use as setas do teclado para navegar
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+      SLIDE 2 — SUMÁRIO INTERATIVO
+    ════════════════════════════════════════════════════════════════════ -->
+    <section id="sumario">
+      <div class="section-header">
+        <span class="section-icon"><i data-lucide="layout-list"></i></span>
+        <span class="section-label">Conteúdo da Palestra</span>
+      </div>
+      <h2>Sumário <span class="accent">Interativo</span></h2>
+      <p style="font-size:0.72em; margin-bottom:0.7em;">Clique em qualquer card para navegar diretamente à seção.</p>
+      <div class="sumario-grid">
+        <a class="sumario-card" href="#/o-que-e">
+          <span class="icon"><i data-lucide="bot"></i></span>
+          <div class="title">O que é Claude Code?</div>
+          <div class="num">01</div>
+        </a>
+        <a class="sumario-card" href="#/setup">
+          <span class="icon"><i data-lucide="settings"></i></span>
+          <div class="title">Setup e Configuração</div>
+          <div class="num">02</div>
+        </a>
+        <a class="sumario-card" href="#/skills-hooks">
+          <span class="icon"><i data-lucide="puzzle"></i></span>
+          <div class="title">Skills</div>
+          <div class="num">03</div>
+        </a>
+        <a class="sumario-card" href="#/agents">
+          <span class="icon"><i data-lucide="users"></i></span>
+          <div class="title">Agents</div>
+          <div class="num">04</div>
+        </a>
+        <a class="sumario-card" href="#/fluxo">
+          <span class="icon"><i data-lucide="shield-check"></i></span>
+          <div class="title">Demo: Revisor Fisco</div>
+          <div class="num">05</div>
+        </a>
+        <a class="sumario-card" href="#/dicas">
+          <span class="icon"><i data-lucide="lightbulb"></i></span>
+          <div class="title">Dicas e Truques</div>
+          <div class="num">06</div>
+        </a>
+        <a class="sumario-card" href="#/demo">
+          <span class="icon"><i data-lucide="help-circle"></i></span>
+          <div class="title">Perguntas</div>
+          <div class="num">07</div>
+        </a>
+        <a class="sumario-card" href="#/conclusao">
+          <span class="icon"><i data-lucide="rocket"></i></span>
+          <div class="title">Conclusão</div>
+          <div class="num">08</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+      SEÇÃO 01 — O QUE É CLAUDE CODE?
+    ════════════════════════════════════════════════════════════════════ -->
+    <section data-background-color="#04091b" data-background-gradient="radial-gradient(ellipse 80% 50% at 50% 50%, rgba(0,221,179,0.08) 0%, transparent 60%)">
+      <div class="section-orb section-orb-1" style="--orb-color: rgba(0,221,179,0.15);"></div>
+      <div class="section-orb section-orb-2" style="--orb-color: rgba(56,200,250,0.15);"></div>
+      <div class="section-page-container">
+        <div class="section-page-label text-green">Seção 01</div>
+        <h2 class="section-page-title gradient-text">Claude Code</h2>
+        <p class="section-page-desc">A ferramenta oficial da Anthropic para desenvolvimento assistido por IA — no terminal e no VSCode</p>
+        <div class="section-page-icon text-green"><i data-lucide="bot"></i></div>
+      </div>
+    </section>
+
+    <!-- 01 — Definição -->
+    <section id="o-que-e" data-transition="fade">
+      <div class="section-header">
+        <span class="section-icon"><i data-lucide="bot"></i></span>
+        <span class="section-label">01 / O que é Claude Code?</span>
+      </div>
+      <h2><span class="accent">Claude Code</span> — Visão Geral</h2>
+      <div class="two-cols">
+        <div>
+          <div class="definition">
+            <p><strong>Claude Code</strong> é a CLI oficial da Anthropic que integra o modelo Claude diretamente no seu terminal e IDE, permitindo desenvolvimento assistido por IA com acesso total ao seu projeto.</p>
+          </div>
+          <ul style="margin-top:0.9em; font-size:0.82em;">
+            <li class="fragment"><strong>Terminal-first:</strong> roda direto no seu shell favorito</li>
+            <li class="fragment"><strong>Contexto completo:</strong> lê, edita e cria arquivos no projeto</li>
+            <li class="fragment"><strong>Extensível:</strong> Skills, Hooks, Agents e MCP servers</li>
+            <li class="fragment"><strong>IDE integration:</strong> VSCode</li>
+          </ul>
+        </div>
+        <div>
+          <div style="margin-bottom:0.5em;">
+            <p style="font-size:0.6em; color:var(--accent-green); font-family:'JetBrains Mono',monospace; margin-bottom:0.3em;">Terminal (CLI)</p>
+            <img src="resources/images/cli-terminal.png" alt="Claude Code no Terminal" style="width:100%; border-radius:8px; border:1px solid var(--border-glow); box-shadow:var(--shadow-card);" />
+          </div>
+          <div>
+            <p style="font-size:0.6em; color:var(--accent-purple); font-family:'JetBrains Mono',monospace; margin-bottom:0.3em;">VSCode (Extensão)</p>
+            <img src="resources/images/cli-vscode.png" alt="Claude Code no VSCode" style="width:100%; border-radius:8px; border:1px solid var(--border-glow); box-shadow:var(--shadow-card);" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+      SEÇÃO 02 — SETUP E CONFIGURAÇÃO
+    ════════════════════════════════════════════════════════════════════ -->
+    <section data-background-color="#04091b" data-background-gradient="radial-gradient(ellipse 80% 50% at 50% 50%, rgba(146,119,255,0.08) 0%, transparent 60%)">
+      <div class="section-orb section-orb-1" style="--orb-color: rgba(146,119,255,0.15);"></div>
+      <div class="section-orb section-orb-2" style="--orb-color: rgba(56,200,250,0.15);"></div>
+      <div class="section-page-container">
+        <div class="section-page-label text-purple">Seção 02</div>
+        <h2 class="section-page-title gradient-text-purple">Setup</h2>
+        <p class="section-page-desc">Instalação, CLAUDE.md e configuração do ambiente</p>
+        <div class="section-page-icon text-purple"><i data-lucide="settings"></i></div>
+      </div>
+    </section>
+
+    <!-- 02 — Instalação e CLAUDE.md -->
+    <section id="setup" data-transition="fade">
+      <div class="section-header">
+        <span class="section-icon"><i data-lucide="settings"></i></span>
+        <span class="section-label">02 / Setup e Configuração</span>
+      </div>
+      <h2>Começando com <span class="accent">Claude Code</span></h2>
+      <div class="card-grid-2" style="margin-top:0.4em; gap:0.5em;">
+        <div class="card fragment" style="padding:0.8em 1em;">
+          <span class="card-icon" style="font-size:1.3em;"><i data-lucide="download"></i></span>
+          <h3 style="font-size:0.9em;">Instalação — 3 opções</h3>
+          <ul style="font-size:0.58em; margin-top:0.2em;">
+            <li><strong>npm:</strong> <code>npm install -g @anthropic-ai/claude-code</code></li>
+            <li><strong>Site:</strong> <a href="https://claude.ai/download" target="_blank">claude.ai/download</a> (app desktop)</li>
+            <li><strong>VSCode:</strong> extensão "Claude Code" no Marketplace</li>
+          </ul>
+          <p style="font-size:0.55em; color:var(--text-muted); margin-top:0.2em;">Requer Node.js 18+ e uma conta Anthropic (ou API key).</p>
+        </div>
+        <div class="card fragment" style="padding:0.8em 1em;">
+          <span class="card-icon" style="font-size:1.3em;"><i data-lucide="file-text"></i></span>
+          <h3 style="font-size:0.9em;">CLAUDE.md</h3>
+          <p style="font-size:0.62em;">Arquivo na raiz do projeto que define <strong>instruções persistentes</strong>: regras de encoding, arquitetura em camadas, skills e agentes disponíveis.</p>
+          <p style="font-size:0.55em; color:var(--text-muted); margin-top:0.2em;">É o "contrato" entre você e a IA.</p>
+        </div>
+        <div class="card fragment" style="padding:0.8em 1em;">
+          <span class="card-icon" style="font-size:1.3em;"><i data-lucide="shield-check"></i></span>
+          <h3 style="font-size:0.9em;">Permissões</h3>
+          <p style="font-size:0.58em;">Controle o que o Claude pode executar sem pedir aprovação:</p>
+          <pre style="font-size:0.48em; padding:0.4em 0.6em; max-height:none;"><code>"allow": [
+  "Bash(python:*)",
+  "Bash(bash:*)",
+  "Bash(svn:*)",
+  "Bash(curl:*)",
+  "Skill(rodar-teste:*)"
+]</code></pre>
+        </div>
+        <div class="card fragment" style="padding:0.8em 1em;">
+          <span class="card-icon" style="font-size:1.3em;"><i data-lucide="folder-tree"></i></span>
+          <h3 style="font-size:0.9em;">Estrutura</h3>
+          <pre style="font-size:0.5em; padding:0.4em 0.6em; max-height:none;"><code>.claude/
+├── settings.json       # config global
+├── settings.local.json # config local
+├── skills/             # conhecimento sob demanda
+├── agents/             # sub-agentes especializados
+└── plans/              # planos de implementação</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+      SEÇÃO 03 — SKILLS E HOOKS
+    ════════════════════════════════════════════════════════════════════ -->
+    <section data-background-color="#04091b" data-background-gradient="radial-gradient(ellipse 80% 50% at 50% 50%, rgba(56,200,250,0.08) 0%, transparent 60%)">
+      <div class="section-orb section-orb-1" style="--orb-color: rgba(56,200,250,0.15);"></div>
+      <div class="section-orb section-orb-2" style="--orb-color: rgba(0,221,179,0.15);"></div>
+      <div class="section-page-container">
+        <div class="section-page-label text-blue">Seção 03</div>
+        <h2 class="section-page-title gradient-text">Skills</h2>
+        <p class="section-page-desc">Ensine o Claude a seguir os padrões do seu projeto</p>
+        <div class="section-page-icon text-blue"><i data-lucide="puzzle"></i></div>
+      </div>
+    </section>
+
+    <!-- 03 — Skills (grupo vertical) -->
+    <section id="skills-hooks">
+
+      <!-- 03.1 — O que são Skills -->
+      <section data-transition="fade">
+        <div class="section-header">
+          <span class="section-icon"><i data-lucide="puzzle"></i></span>
+          <span class="section-label">03 / Skills</span>
+        </div>
+        <h2><span class="accent">Skills</span> — Conhecimento Sob Demanda</h2>
+        <div class="two-cols">
+          <div>
+            <div class="highlight-box" style="margin-bottom:0.6em;">
+              <strong>Skills</strong> são arquivos <code>.md</code> em <code>.claude/skills/</code> que ensinam o Claude a executar tarefas específicas do seu projeto.
+            </div>
+            <ul style="font-size:0.72em;">
+              <li class="fragment"><strong>Auto-trigger:</strong> carregam automaticamente quando o Claude detecta um contexto relevante</li>
+              <li class="fragment"><strong>User-invocable:</strong> você chama manualmente via <code>/nome-da-skill</code></li>
+              <li class="fragment"><strong>Composição:</strong> uma skill pode invocar outras skills</li>
+              <li class="fragment"><strong>Projeto-específica:</strong> cada projeto tem suas próprias skills</li>
+            </ul>
+          </div>
+          <div>
+            <div class="card" style="border-color: var(--accent-green);">
+              <h3 style="font-size:0.85em;">Skills do nosso projeto</h3>
+              <ul style="font-size:0.6em; margin-top:0.3em;">
+                <li><code>/encoding</code> — regras de ISO-8859-1</li>
+                <li><code>/sql-patterns</code> — padrões de TDLQuery</li>
+                <li><code>/memory-management</code> — Create/Free</li>
+                <li><code>/nomenclatura</code> — prefixos de arquivos e classes</li>
+                <li><code>/componentes</code> — TDL* vs padrão Delphi</li>
+                <li><code>/rodar-teste</code> — testes DUnit</li>
+                <li><code>/revisar-bug</code> — review automático</li>
+                <li><code>/jira-assistant</code> — integração Jira</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <p class="slide-nav-hint">↓ pressione ↓ para ver como funciona</p>
+      </section>
+
+      <!-- 03.2 — Estrutura de uma Skill -->
+      <section data-transition="fade">
+        <div class="section-header">
+          <span class="section-icon"><i data-lucide="file-code"></i></span>
+          <span class="section-label">03 / Skills — Estrutura</span>
+        </div>
+        <h2>Anatomia de uma <span class="accent">Skill</span></h2>
+        <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:0.6em; align-items:center;">
+          <div>
+            <p style="font-size:0.65em; margin-bottom:0.4em; text-align:center;">Cada skill é um arquivo <code>.md</code> com frontmatter YAML + corpo Markdown:</p>
+            <pre style="font-size:0.65em; padding:0.9em 1.2em; max-height:none; line-height:2;"><code>---
+name: encoding
+description: Regras de encoding ISO-8859-1.
+  Carregar SEMPRE que for editar .pas/.dfm
+user-invocable: true
+---
+## Regras de Encoding
+- NUNCA usar UTF-8 em .pas/.dfm/.dpr
+- SEMPRE usar patch_delphi.sh para editar</code></pre>
+          </div>
+          <div style="font-size:12em; color:var(--accent-green); opacity:0.4; line-height:1; font-weight:200; font-family:'DM Sans',sans-serif;">}</div>
+          <div>
+            <div class="card fragment" style="margin-bottom:0.35em; padding:0.6em 0.8em;">
+              <h3 style="font-size:0.75em;"><code>name</code></h3>
+              <p style="font-size:0.55em;">Identificador da skill. Usado no <code>/nome-da-skill</code>.</p>
+            </div>
+            <div class="card fragment" style="margin-bottom:0.35em; padding:0.6em 0.8em;">
+              <h3 style="font-size:0.75em;"><code>description</code></h3>
+              <p style="font-size:0.55em;">O Claude usa essa descrição para decidir <strong>quando carregar automaticamente</strong>. Quanto mais específica, melhor.</p>
+            </div>
+            <div class="card fragment" style="margin-bottom:0.35em; padding:0.6em 0.8em;">
+              <h3 style="font-size:0.75em;"><code>user-invocable</code></h3>
+              <p style="font-size:0.55em;">Se <code>true</code>, aparece como comando <code>/skill</code> que você chama manualmente.</p>
+            </div>
+            <div class="card fragment" style="padding:0.6em 0.8em;">
+              <h3 style="font-size:0.75em;">Corpo (Markdown)</h3>
+              <p style="font-size:0.55em;">Instruções que o Claude segue quando a skill é carregada: regras, exemplos e templates.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03.3 — Como o auto-trigger funciona -->
+      <section data-transition="fade">
+        <div class="section-header">
+          <span class="section-icon"><i data-lucide="zap"></i></span>
+          <span class="section-label">03 / Skills — Auto-trigger</span>
+        </div>
+        <h2>Como o <span class="accent">Auto-trigger</span> funciona</h2>
+        <div class="definition" style="margin-bottom:0.7em;">
+          <p style="font-size:0.72em;">O Claude lê a <code>description</code> de todas as skills e decide automaticamente quais carregar com base no contexto da conversa.</p>
+        </div>
+        <table style="font-size:0.62em;">
+          <thead>
+            <tr>
+              <th>Você faz isso...</th>
+              <th>O Claude carrega...</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Edita um arquivo <code>.pas</code></td>
+              <td><code>/encoding</code> + <code>/nomenclatura</code></td>
+            </tr>
+            <tr>
+              <td>Escreve uma query <code>TDLQuery</code></td>
+              <td><code>/sql-patterns</code></td>
+            </tr>
+            <tr>
+              <td>Usa <code>Create</code> / <code>Free</code></td>
+              <td><code>/memory-management</code></td>
+            </tr>
+            <tr>
+              <td>Pede para revisar um bug</td>
+              <td><code>/revisar-bug</code> + <code>/jira-assistant</code></td>
+            </tr>
+            <tr>
+              <td>Digita <code>/rodar-teste</code></td>
+              <td><code>/rodar-teste</code> (manual)</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="highlight-box" style="margin-top:0.6em; font-size:0.65em;">
+          💡 Você não precisa lembrar de carregar nada — o Claude detecta o contexto e carrega as skills certas sozinho. Mas também pode chamar manualmente com <code>/skill</code>.
+        </div>
+        <div class="highlight-box blue" style="margin-top:0.4em; font-size:0.6em;">
+          📌 <strong>Hooks</strong> também existem no Claude Code (comandos automáticos em eventos como PreToolUse e PostToolUse), mas ainda não usamos no projeto.
+        </div>
+      </section>
+
+    </section><!-- /skills-hooks -->
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+      SEÇÃO 04 — AGENTS
+    ════════════════════════════════════════════════════════════════════ -->
+    <section data-background-color="#04091b" data-background-gradient="radial-gradient(ellipse 80% 50% at 50% 50%, rgba(255,120,73,0.08) 0%, transparent 60%)">
+      <div class="section-orb section-orb-1" style="--orb-color: rgba(255,120,73,0.15);"></div>
+      <div class="section-orb section-orb-2" style="--orb-color: rgba(255,205,71,0.15);"></div>
+      <div class="section-page-container">
+        <div class="section-page-label text-orange">Seção 04</div>
+        <h2 class="section-page-title" style="background:var(--gradient-warm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Agents</h2>
+        <p class="section-page-desc">Agentes personalizados que automatizam o pipeline de desenvolvimento</p>
+        <div class="section-page-icon text-orange"><i data-lucide="users"></i></div>
+      </div>
+    </section>
+
+    <!-- 04 — Agents (grupo vertical) -->
+    <section id="agents">
+
+      <!-- 04.1 — O que são Agents -->
+      <section data-transition="fade">
+        <div class="section-header">
+          <span class="section-icon"><i data-lucide="users"></i></span>
+          <span class="section-label">04 / Agents</span>
+        </div>
+        <h2>O que são <span class="accent">Agents</span>?</h2>
+        <div class="two-cols">
+          <div>
+            <div class="definition" style="margin-bottom:0.6em;">
+              <p style="font-size:0.72em;"><strong>Agents</strong> são arquivos <code>.md</code> em <code>.claude/agents/</code> que definem sub-agentes especializados com papel, ferramentas e regras próprias.</p>
+            </div>
+            <ul style="font-size:0.68em;">
+              <li class="fragment"><strong>Contexto isolado:</strong> cada agent roda em processo separado</li>
+              <li class="fragment"><strong>Ferramentas específicas:</strong> define quais tools o agent pode usar</li>
+              <li class="fragment"><strong>Composição:</strong> um agent pode chamar skills e outros agents</li>
+              <li class="fragment"><strong>Modelo configurável:</strong> pode usar Opus, Sonnet ou Haiku
+                <img class="fragment" src="resources/images/select-model.png" alt="Seleção de modelo" style="display:block; margin-top:0.4em; width:100%; max-width:650px; border-radius:8px; border:1px solid var(--border-glow); box-shadow:var(--shadow-card);" />
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div class="card" style="border-color:var(--accent-orange);">
+              <h3 style="font-size:0.8em; color:var(--accent-orange);">Nosso Pipeline</h3>
+              <p style="font-size:0.62em; margin-bottom:0.4em;">Criamos um pipeline completo de desenvolvimento com 4 agents:</p>
+              <ul style="font-size:0.58em;">
+                <li><strong style="color:var(--accent-blue);">01_AnalistaRequisitos</strong> — analisa o chamado</li>
+                <li><strong style="color:var(--accent-green);">02_Implementador</strong> — escreve o código</li>
+                <li><strong style="color:var(--accent-purple);">03_TestadorUnitario</strong> — cria os testes</li>
+                <li><strong style="color:var(--accent-red);">RevisorFisco</strong> — revisa o código</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <p class="slide-nav-hint">↓ pressione ↓ para ver cada agent</p>
+      </section>
+
+      <!-- 04.2 — Pipeline visual -->
+      <section data-transition="fade">
+        <div class="section-header">
+          <span class="section-icon"><i data-lucide="git-branch"></i></span>
+          <span class="section-label">04 / Agents — Pipeline</span>
+        </div>
+        <h2>Pipeline de <span class="accent">Desenvolvimento</span></h2>
+        <div style="display:flex; align-items:center; justify-content:center; gap:0.3em; margin:0.8em 0;">
+          <div class="card" style="text-align:center; padding:0.7em; flex:1; border-color:var(--accent-blue);">
+            <span style="font-size:1.5em;"><i data-lucide="clipboard-list" style="color:var(--accent-blue);"></i></span>
+            <h3 style="font-size:0.65em; color:var(--accent-blue); margin-top:0.3em;">01 Analista</h3>
+            <p style="font-size:0.48em;">Jira → Plano técnico</p>
+          </div>
+          <span style="font-size:1.5em; color:var(--accent-green);">→</span>
+          <div class="card" style="text-align:center; padding:0.7em; flex:1; border-color:var(--accent-green);">
+            <span style="font-size:1.5em;"><i data-lucide="code" style="color:var(--accent-green);"></i></span>
+            <h3 style="font-size:0.65em; color:var(--accent-green); margin-top:0.3em;">02 Implementador</h3>
+            <p style="font-size:0.48em;">Plano → Código Delphi</p>
+          </div>
+          <span style="font-size:1.5em; color:var(--accent-purple);">→</span>
+          <div class="card" style="text-align:center; padding:0.7em; flex:1; border-color:var(--accent-purple);">
+            <span style="font-size:1.5em;"><i data-lucide="flask-conical" style="color:var(--accent-purple);"></i></span>
+            <h3 style="font-size:0.65em; color:var(--accent-purple); margin-top:0.3em;">03 Testador</h3>
+            <p style="font-size:0.48em;">Código → Testes DUnit</p>
+          </div>
+          <span style="font-size:1.5em; color:var(--accent-red);">→</span>
+          <div class="card" style="text-align:center; padding:0.7em; flex:1; border-color:var(--accent-red);">
+            <span style="font-size:1.5em;"><i data-lucide="shield-check" style="color:var(--accent-red);"></i></span>
+            <h3 style="font-size:0.65em; color:var(--accent-red); margin-top:0.3em;">Revisor</h3>
+            <p style="font-size:0.48em;">Code review automático</p>
+          </div>
+        </div>
+        <div class="highlight-box" style="font-size:0.62em; margin-top:0.5em;">
+          💡 Cada agent tem <strong>papel definido</strong>, <strong>ferramentas restritas</strong> e <strong>modelo específico</strong>. O Analista usa Opus (mais inteligente), Implementador e Testador usam Sonnet (mais rápido).
+        </div>
+      </section>
+
+      <!-- 04.3 — Detalhes dos agents -->
+      <section data-transition="fade">
+        <div class="section-header">
+          <span class="section-icon"><i data-lucide="clipboard-list"></i></span>
+          <span class="section-label">04 / Agents — Detalhes</span>
+        </div>
+        <h2>Nossos <span class="accent">4 Agents</span></h2>
+        <div class="card-grid-2" style="margin-top:0.5em; gap:0.5em;">
+          <div class="card fragment" style="padding:0.7em 0.9em; border-color:var(--accent-blue);">
+            <h3 style="font-size:0.75em; color:var(--accent-blue);">01 — Analista de Requisitos</h3>
+            <ul style="font-size:0.52em;">
+              <li>Busca a issue no Jira via API REST</li>
+              <li>Baixa requisito do Google Docs (MCP)</li>
+              <li>Classifica: Bug, Task ou Epic</li>
+              <li>Gera <code>PLANO_FISCO-XXXX.md</code> estruturado</li>
+            </ul>
+            <p style="font-size:0.48em; color:var(--text-muted);">Modelo: Opus · Tools: Read, Glob, Grep, WebFetch, Bash, Skill</p>
+          </div>
+          <div class="card fragment" style="padding:0.7em 0.9em; border-color:var(--accent-green);">
+            <h3 style="font-size:0.75em; color:var(--accent-green);">02 — Implementador</h3>
+            <ul style="font-size:0.52em;">
+              <li>Lê o plano técnico gerado pelo Analista</li>
+              <li>Implementa código Delphi XE6 passo a passo</li>
+              <li>Pergunta units de referência antes de codificar</li>
+              <li>Usa <code>patch_delphi.sh</code> (encoding ISO-8859-1)</li>
+            </ul>
+            <p style="font-size:0.48em; color:var(--text-muted);">Modelo: Sonnet · Tools: Read, Write, Edit, Glob, Grep, Bash</p>
+          </div>
+          <div class="card fragment" style="padding:0.7em 0.9em; border-color:var(--accent-purple);">
+            <h3 style="font-size:0.75em; color:var(--accent-purple);">03 — Testador Unitário</h3>
+            <ul style="font-size:0.52em;">
+              <li>Analisa o código implementado</li>
+              <li>Cria testes DUnit com <code>TDBTestCase</code></li>
+              <li>Usa builders de <code>KrRepositorio.pas</code></li>
+              <li>Transação no SetUp, Rollback no TearDown</li>
+              <li>Usa a skill <code>/rodar-teste</code> para compilar e executar</li>
+            </ul>
+            <p style="font-size:0.48em; color:var(--text-muted);">Modelo: Sonnet · Tools: Read, Write, Edit, Glob, Grep, Bash</p>
+          </div>
+          <div class="card fragment" style="padding:0.7em 0.9em; border-color:var(--accent-red);">
+            <h3 style="font-size:0.75em; color:var(--accent-red);">Revisor Fisco</h3>
+            <ul style="font-size:0.52em;">
+              <li>Revisa código e patches SVN</li>
+              <li>Prioriza: Segurança → Memory → Performance</li>
+              <li>Detecta memory leaks, SQL injection, etc.</li>
+              <li>Gera relatório com severidade (Crítico/Alto/Médio/Baixo)</li>
+            </ul>
+            <p style="font-size:0.48em; color:var(--text-muted);">Modelo: Sonnet · Tools: Read, Grep, Glob (somente leitura)</p>
+          </div>
+        </div>
+      </section>
+
+    </section><!-- /agents -->
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+      SEÇÃO 05 — DEMO AO VIVO: REVISOR FISCO
+    ════════════════════════════════════════════════════════════════════ -->
+    <section data-background-color="#04091b" data-background-gradient="radial-gradient(ellipse 80% 50% at 50% 50%, rgba(255,92,122,0.08) 0%, transparent 60%)">
+      <div class="section-orb section-orb-1" style="--orb-color: rgba(255,92,122,0.15);"></div>
+      <div class="section-orb section-orb-2" style="--orb-color: rgba(255,120,73,0.15);"></div>
+      <div class="section-page-container">
+        <div class="section-page-label" style="color:var(--accent-red);">Seção 05</div>
+        <h2 class="section-page-title" style="background:var(--gradient-warm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Demo ao Vivo</h2>
+        <p class="section-page-desc">Vamos ver o Revisor Fisco em ação no VSCode</p>
+        <div class="section-page-icon" style="color:var(--accent-red);"><i data-lucide="shield-check"></i></div>
+      </div>
+    </section>
+
+    <!-- 05 — Demo Revisor Fisco -->
+    <section id="fluxo" data-transition="fade">
+      <div class="section-header">
+        <span class="section-icon"><i data-lucide="shield-check"></i></span>
+        <span class="section-label">05 / Demo — Revisor Fisco</span>
+      </div>
+      <h2>Revisor Fisco <span class="accent">ao Vivo</span></h2>
+      <div class="two-cols">
+        <div>
+          <div class="definition" style="margin-bottom:0.6em;">
+            <p style="font-size:0.72em;">Vamos abrir o VSCode e chamar o <strong>Revisor Fisco</strong> para revisar código Delphi em tempo real.</p>
+          </div>
+          <div class="card" style="border-color:var(--accent-red); margin-bottom:0.5em;">
+            <h3 style="font-size:0.8em; color:var(--accent-red);">O que ele faz</h3>
+            <ul style="font-size:0.6em;">
+              <li>Analisa units <code>.pas</code> e patches SVN</li>
+              <li>Detecta memory leaks, SQL injection, performance</li>
+              <li>Classifica achados: Crítico → Alto → Médio → Baixo</li>
+              <li>Sugere correções com código</li>
+            </ul>
+          </div>
+          <div class="highlight-box" style="font-size:0.6em;">
+            🔒 O Revisor tem acesso <strong>somente leitura</strong> (Read, Grep, Glob) — ele não modifica nada no projeto.
+          </div>
+        </div>
+        <div>
+          <div class="card" style="border-color:var(--accent-green);">
+            <h3 style="font-size:0.8em; color:var(--accent-green);">Como chamar</h3>
+            <pre style="font-size:0.6em; padding:0.7em 1em; max-height:none; line-height:1.8;"><code>/revisar-bug FISCO-XXXX</code></pre>
+            <p style="font-size:0.58em; margin-top:0.4em;">Ou selecione um arquivo e peça:</p>
+            <pre style="font-size:0.55em; padding:0.6em 0.8em; max-height:none; line-height:1.6;"><code>Revise este código usando
+o agent RevisorFisco</code></pre>
+          </div>
+          <div class="card fragment" style="margin-top:0.5em; text-align:center; border-color:var(--accent-orange);">
+            <span style="font-size:2em;"><i data-lucide="monitor-play" style="color:var(--accent-orange);"></i></span>
+            <h3 style="font-size:0.75em; color:var(--accent-orange); margin-top:0.3em;">Hora da Demo!</h3>
+            <p style="font-size:0.55em;">Vamos ao VSCode...</p>
+          </div>
+        </div>
+      </div>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+      SEÇÃO 06 — DICAS E TRUQUES
+    ════════════════════════════════════════════════════════════════════ -->
+    <section data-background-color="#04091b" data-background-gradient="radial-gradient(ellipse 80% 50% at 50% 50%, rgba(255,205,71,0.08) 0%, transparent 60%)">
+      <div class="section-orb section-orb-1" style="--orb-color: rgba(255,205,71,0.15);"></div>
+      <div class="section-orb section-orb-2" style="--orb-color: rgba(255,120,73,0.15);"></div>
+      <div class="section-page-container">
+        <div class="section-page-label" style="color:var(--accent-gold);">Seção 06</div>
+        <h2 class="section-page-title" style="background:var(--gradient-gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Dicas</h2>
+        <p class="section-page-desc">Truques e boas práticas para tirar o máximo do Claude Code</p>
+        <div class="section-page-icon" style="color:var(--accent-gold);"><i data-lucide="lightbulb"></i></div>
+      </div>
+    </section>
+
+    <!-- 06 — Dicas -->
+    <section id="dicas" data-transition="fade">
+      <div class="section-header">
+        <span class="section-icon"><i data-lucide="lightbulb"></i></span>
+        <span class="section-label">06 / Dicas e Truques</span>
+      </div>
+      <h2>Boas <span class="accent">Práticas</span></h2>
+      <div class="card-grid-3" style="margin-top:0.4em; gap:0.4em;">
+        <div class="card fragment" style="padding:0.7em 0.9em;">
+          <span class="card-icon" style="font-size:1.3em;"><i data-lucide="file-text"></i></span>
+          <h3 style="font-size:0.9em;">CLAUDE.md completo</h3>
+          <p style="font-size:0.58em;">Documente convenções e regras — o custo de contexto é muito menor que o custo de retrabalho.</p>
+        </div>
+        <div class="card fragment" style="padding:0.7em 0.9em;">
+          <span class="card-icon" style="font-size:1.3em;"><i data-lucide="layers"></i></span>
+          <h3 style="font-size:0.9em;">Skills modulares</h3>
+          <p style="font-size:0.58em;">Uma skill por domínio, pequena e focada. Use triggers específicos para auto-carregamento.</p>
+        </div>
+        <div class="card fragment" style="padding:0.7em 0.9em;">
+          <span class="card-icon" style="font-size:1.3em;"><i data-lucide="brain"></i></span>
+          <h3 style="font-size:0.9em;">Memory system</h3>
+          <p style="font-size:0.58em;">O Claude salva automaticamente suas preferências e correções. Você também pode pedir "lembre disso". Contexto persistido entre conversas.</p>
+        </div>
+        <div class="card fragment" style="padding:0.7em 0.9em;">
+          <span class="card-icon" style="font-size:1.3em;"><i data-lucide="zap"></i></span>
+          <h3 style="font-size:0.9em;">Paralelismo</h3>
+          <p style="font-size:0.58em;">Lance múltiplos agents em paralelo para pesquisas independentes.</p>
+        </div>
+        <div class="card fragment" style="padding:0.7em 0.9em;">
+          <span class="card-icon" style="font-size:1.3em;"><i data-lucide="shield-check"></i></span>
+          <h3 style="font-size:0.9em;">Review sempre</h3>
+          <p style="font-size:0.58em;">Revise diffs, rode testes e valide antes de commitar. Human-in-the-loop é essencial.</p>
+        </div>
+        <div class="card fragment" style="padding:0.7em 0.9em;">
+          <span class="card-icon" style="font-size:1.3em;"><i data-lucide="message-square"></i></span>
+          <h3 style="font-size:0.9em;">Prompts claros</h3>
+          <p style="font-size:0.58em;">Seja específico. Dê contexto, mostre exemplos e defina critérios de aceite.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+      SEÇÃO 07 — DEMO AO VIVO
+    ════════════════════════════════════════════════════════════════════ -->
+    <section id="demo" data-background-color="#04091b" data-background-image="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGs5Y2NmNnM2czJqenQ0cWZwazFwOHMzOGRoaWJkNHhwYzkxa3NudyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RDyxKvpuh0WmL6gXHQ/giphy.gif" data-background-size="cover" data-background-position="center" data-background-opacity="0.08" data-background-gradient="radial-gradient(ellipse 80% 50% at 50% 50%, rgba(56,200,250,0.08) 0%, transparent 60%)">
+      <div class="section-orb section-orb-1" style="--orb-color: rgba(56,200,250,0.15);"></div>
+      <div class="section-orb section-orb-2" style="--orb-color: rgba(146,119,255,0.15);"></div>
+      <div class="section-page-container">
+        <div class="section-page-label text-blue">Seção 07</div>
+        <h2 class="section-page-title gradient-text" style="font-size:3em;">Perguntas?</h2>
+        <p class="section-page-desc">Aberto para dúvidas, curiosidades e discussão</p>
+        <div class="section-page-icon text-blue"><i data-lucide="help-circle"></i></div>
+        <div class="highlight-box" style="margin-top:1.2em; font-size:0.72em; max-width:500px;">
+          💬 Pergunte sobre Claude Code, skills, agents, configuração, custos ou qualquer outro tema da apresentação.
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+      SLIDE FINAL — CONCLUSÃO
+    ════════════════════════════════════════════════════════════════════ -->
+    <section id="conclusao" data-background-color="#04091b" data-background-image="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTFoazZlc204MXVyMGlidzBtOGVseGppMW9oZnVxdTN3dTcwMWNzNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26BkO73Rlf5otVsIw/giphy.gif" data-background-size="cover" data-background-position="center" data-background-opacity="0.08" data-background-gradient="radial-gradient(ellipse 80% 50% at 50% 50%, rgba(146,119,255,0.08) 0%, transparent 60%)">
+      <div class="section-orb section-orb-1" style="--orb-color: rgba(146,119,255,0.15);"></div>
+      <div class="section-orb section-orb-2" style="--orb-color: rgba(0,221,179,0.15);"></div>
+      <div class="section-page-container">
+        <div class="section-page-label text-purple">Conclusão</div>
+        <h2 class="section-page-title gradient-text-purple" style="font-size:2.8em;">Obrigado!</h2>
+        <p class="section-page-desc" style="max-width:650px;">
+          Claude Code transforma o terminal em um ambiente de desenvolvimento inteligente.<br />
+          <strong style="color:var(--accent-green);">Contexto estruturado + IA = produtividade real.</strong>
+        </p>
+        <div style="margin-top:1.2em;">
+          <span class="tag" style="background:rgba(255,205,71,0.1);color:var(--accent-gold);border-color:rgba(255,205,71,0.2);">CLAUDE.md</span>
+          <span class="tag blue">Skills</span>
+          <span class="tag">Agents</span>
+          <span class="tag orange">Permissões</span>
+          <span class="tag purple">Memory</span>
+          <span class="tag red">Revisor Fisco</span>
+        </div>
+        <div class="highlight-box" style="margin-top:1em; font-size:0.68em; max-width:480px;">
+          📎 Links úteis:<br />
+          <a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank">docs.anthropic.com/claude-code</a><br />
+          <a href="https://github.com/anthropics/claude-code" target="_blank">github.com/anthropics/claude-code</a>
+        </div>
+        <a href="#/capa" style="display:inline-flex; align-items:center; gap:0.4em; margin-top:1.2em; font-family:'JetBrains Mono',monospace; font-size:0.55em; color:var(--accent-green); text-decoration:none; background:rgba(0,221,179,0.08); border:1px solid rgba(0,221,179,0.2); border-radius:999px; padding:0.4em 1em; transition:all 0.3s;">
+          <i data-lucide="arrow-left"></i> Voltar ao início
+        </a>
+      </div>
+    </section>
+
+  </div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<!-- Reveal.js -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<!-- Main (ESM) -->
+<script type="module" src="js/main.js"></script>
+
+</body>
+</html>
