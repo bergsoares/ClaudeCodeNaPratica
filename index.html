@@ -180,44 +180,58 @@
         <span class="section-label">02 / Setup e Configuração</span>
       </div>
       <h2>Começando com <span class="accent">Claude Code</span></h2>
-      <div class="card-grid-2" style="margin-top:0.4em; gap:0.5em;">
-        <div class="card fragment" style="padding:0.8em 1em;">
-          <span class="card-icon" style="font-size:1.3em;"><i data-lucide="download"></i></span>
-          <h3 style="font-size:0.9em;">Instalação — 3 opções</h3>
-          <ul style="font-size:0.58em; margin-top:0.2em;">
-            <li><strong>npm:</strong> <code>npm install -g @anthropic-ai/claude-code</code></li>
-            <li><strong>Site:</strong> <a href="https://claude.ai/download" target="_blank">claude.ai/download</a> (app desktop)</li>
-            <li><strong>VSCode:</strong> extensão "Claude Code" no Marketplace</li>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.4em; margin-top:0.3em;">
+        <div class="card fragment" style="padding:0.5em 0.7em;">
+          <span class="card-icon" style="font-size:1.1em;"><i data-lucide="download"></i></span>
+          <h3 style="font-size:0.78em;">Instalação — 3 opções</h3>
+          <ul style="font-size:0.5em; margin-top:0.15em;">
+            <li><strong>npm:</strong> <code>npm i -g @anthropic-ai/claude-code</code></li>
+            <li><strong>Site:</strong> <a href="https://claude.ai/download" target="_blank">claude.ai/download</a></li>
+            <li><strong>VSCode:</strong> extensão "Claude Code"</li>
           </ul>
-          <p style="font-size:0.55em; color:var(--text-muted); margin-top:0.2em;">Requer Node.js 18+ e uma conta Anthropic (ou API key).</p>
+          <p style="font-size:0.45em; color:var(--text-muted); margin-top:0.15em;">Requer Node.js 18+ e conta Anthropic.</p>
         </div>
-        <div class="card fragment" style="padding:0.8em 1em;">
-          <span class="card-icon" style="font-size:1.3em;"><i data-lucide="file-text"></i></span>
-          <h3 style="font-size:0.9em;">CLAUDE.md</h3>
-          <p style="font-size:0.62em;">Arquivo na raiz do projeto que define <strong>instruções persistentes</strong>: regras de encoding, arquitetura em camadas, skills e agentes disponíveis.</p>
-          <p style="font-size:0.55em; color:var(--text-muted); margin-top:0.2em;">É o "contrato" entre você e a IA.</p>
+        <div class="card fragment" style="padding:0.5em 0.7em;">
+          <span class="card-icon" style="font-size:1.1em;"><i data-lucide="file-text"></i></span>
+          <h3 style="font-size:0.78em;">CLAUDE.md</h3>
+          <p style="font-size:0.52em;">Arquivo na raiz do projeto com <strong>instruções persistentes</strong>: regras de encoding, arquitetura, skills e agentes.</p>
+          <p style="font-size:0.45em; color:var(--text-muted); margin-top:0.15em;">É o "contrato" entre você e a IA.</p>
         </div>
-        <div class="card fragment" style="padding:0.8em 1em;">
-          <span class="card-icon" style="font-size:1.3em;"><i data-lucide="shield-check"></i></span>
-          <h3 style="font-size:0.9em;">Permissões</h3>
-          <p style="font-size:0.58em;">Controle o que o Claude pode executar sem pedir aprovação:</p>
-          <pre style="font-size:0.48em; padding:0.4em 0.6em; max-height:none;"><code>"allow": [
+        <div class="card fragment" style="padding:0.5em 0.7em;">
+          <span class="card-icon" style="font-size:1.1em;"><i data-lucide="shield-check"></i></span>
+          <h3 style="font-size:0.78em;">Permissões</h3>
+          <pre style="font-size:0.42em; padding:0.3em 0.5em; max-height:none;"><code>"allow": [
   "Bash(python:*)",
-  "Bash(bash:*)",
   "Bash(svn:*)",
-  "Bash(curl:*)",
   "Skill(rodar-teste:*)"
 ]</code></pre>
         </div>
-        <div class="card fragment" style="padding:0.8em 1em;">
-          <span class="card-icon" style="font-size:1.3em;"><i data-lucide="folder-tree"></i></span>
-          <h3 style="font-size:0.9em;">Estrutura</h3>
-          <pre style="font-size:0.5em; padding:0.4em 0.6em; max-height:none;"><code>.claude/
-├── settings.json       # config global
-├── settings.local.json # config local
-├── skills/             # conhecimento sob demanda
-├── agents/             # sub-agentes especializados
-└── plans/              # planos de implementação</code></pre>
+        <div class="card fragment" style="padding:0.5em 0.7em;">
+          <span class="card-icon" style="font-size:1.1em;"><i data-lucide="folder-tree"></i></span>
+          <h3 style="font-size:0.78em;">Estrutura</h3>
+          <pre style="font-size:0.42em; padding:0.3em 0.5em; max-height:none;"><code>.claude/
+├── settings.json
+├── settings.local.json
+├── skills/
+├── agents/
+└── plans/</code></pre>
+        </div>
+        <div class="card fragment" style="padding:0.5em 0.7em; grid-column: span 2;">
+          <span class="card-icon" style="font-size:1.1em;"><i data-lucide="link"></i></span>
+          <h3 style="font-size:0.78em;">Setup por Equipe</h3>
+          <div style="display:flex; gap:0.8em; align-items:flex-start;">
+            <div>
+              <p style="font-size:0.5em;">Cada equipe tem sua pasta <code>.claude-{equipe}/</code> e <code>CLAUDE-{equipe}.md</code> com skills e agents específicos.</p>
+              <p style="font-size:0.43em; color:var(--text-muted); margin-top:0.15em;">⚠ Requer <strong>Modo de Desenvolvedor</strong> no Windows (symlinks).</p>
+            </div>
+            <pre style="font-size:0.42em; padding:0.3em 0.5em; max-height:none; flex-shrink:0;"><code>ConfigurarClaudeEquipe.bat
+  1 - Fiscal
+  2 - Contábil
+  3 - Pessoal
+
+.claude   → .claude-fiscal
+CLAUDE.md → CLAUDE-fiscal.md</code></pre>
+          </div>
         </div>
       </div>
     </section>
